@@ -1,22 +1,91 @@
-
-{% assign block_settings = block.settings %}
-<div
-  class="
-    footer-utilities__group-copyright
-    custom-typography
-    {% if block_settings.font_size != "" %}custom-font-size{% endif %}
-  "
-  style="{% render 'typography-style', preset: 'custom', settings: block_settings %}"
-  {{ block.shopify_attributes }}
->
-  <span class="footer-utilities__text">
-    &copy; {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url -}}
-    {%- if block_settings.show_powered_by -%}
-      , {{ powered_by_link }}
-    {%- endif -%}
-  </span>
+<div style="display:flex; justify-content:space-between; align-items:center; width:100vw; padding:0px 0; border-top:1px solid rgba(255,255,255,0.15);">
 </div>
+
+  
+<style>
+  /* Basic footer layout */
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+    /* ❌ DELETED: The 'border-top' line to remove the divider */
+  }
+
+  /* Copyright text styling */
+  .footer-copyright {
+    color: #aaa;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Bolding the 'RIZE' text */
+  .footer-copyright strong {
+    color: #fff;
+  }
+
+  /* Payment icons container */
+  .footer-payment-icons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  /* Individual payment icon styling - Applies to both Visa and COD */
+  .footer-payment-icons img {
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    /* Set a standard size for all icons */
+    height: 23px; /* Consistent height */
+    width: 40px;  /* Consistent width */
+    object-fit: contain; /* Ensures the image scales properly */
+  }
+
+  /* Hover effect for icons */
+  .footer-payment-icons img:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+</style>
+
+<div class="footer-container">
+  <div class="footer-copyright">
+    <span class="footer-utilities__text">
+      © 2025 RIGHTS RESERVED TO <strong>RIZE</strong>
+    </span>
+  </div>
+
+  <div class="footer-payment-icons">
+    <img
+      class="visa-icon"
+      src="https://cdn.shopify.com/s/files/1/0707/5695/8253/files/visa.svg?v=1758921065"
+      alt="Visa"
+      /* Removed inline width/height to rely on CSS */
+      width="40"
+      height="23"
+    />
+
+    <img
+      class="cod-icon"
+      src="https://cdn.shopify.com/s/files/1/0707/5695/8253/files/cod.svg?v=1758999703"
+      alt="Cash on Delivery"
+      /* Removed inline width/height to rely on CSS */
+      width="40"
+      height="23"
+    />
+
+    <img
+      class="safety-icon"
+      src="https://cdn.shopify.com/s/files/1/0707/5695/8253/files/safety.svg?v=1758999646"
+      alt="Safety"
+      /* Removed inline width/height to rely on CSS */
+      width="40"
+      height="23"
+    />
+  </div>
+</div>
+
 
 {% schema %}
 {
